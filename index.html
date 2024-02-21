@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Portfolio || Focze Eszter</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="apple-touch-icon" href="assets/favicon_package/apple-touch-icon.png">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/favicon_package/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/favicon_package/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/favicon_package/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/favicon_package/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="60x60" href="assets/favicon_package/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/favicon_package/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/favicon_package/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/favicon_package/apple-touch-icon-152x152.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_package/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_package/favicon-16x16.png">
+		<link rel="manifest" href="assets/favicon_package/site.webmanifest">
+		<link rel="mask-icon" href="assets/favicon_package/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" type="image/png" href="assets/favicon_package/favicon-32x32.png"/>
+		<meta name="msapplication-TileColor" content="#71a02f">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+	<body>
+		<div class="screen">
+			<div class="crt">
+				<div class="scanline"></div>
+				<div class="terminal">
+					<div class="content">
+						<section class="main_page" id="home">
+							<nav>
+								<ul class="nav_list">
+									<li><img src="assets/favicon_package/logo2.webp"  class="logo" height="60px"></li>
+									<li data-nav="home"><a href="#home" class="nav_item"><img src="assets/images/home.webp" width="20px">Home</a></li>
+									<li data-nav="projects"><a href="#projects" class="nav_item"><img src="assets/images/projects.webp" width="20">Projects</a></li>
+									<li data-nav="education"><a href="#education" class="nav_item"><img src="assets/images/education.webp" width="20">Education</a></li>
+									<li data-nav="skills"><a href="#skills" class="nav_item"><img src="assets/images/skills.webp" width="20">Skills</a></li>
+									<li data-nav="contact"><a href="#contact" class="nav_item"><img src="assets/images/contact.webp" width="20">Contact</a></li>
+								</ul>
+							</nav>
+							<div class="main_text">
+								<h1> &lt;title&gt; Hello, my name is <span>Focze Eszter</span> &lt;/title&gt; </h1>
+								<h3> &lt;description&gt; I enjoy creating things that live on the internet, meme enjoyer &lt;/description&gt; </h3>
+							</div>
+							<div class="window">
+								<div class="bar">
+									<p>me.jpeg</p>
+									<button><img src="assets/images/close.webp" width="15px"/></button>
+								</div>
+								<div class="window_body">
+									<img src="assets/images/me.webp" width="357px" class="imgs">
+									<!--<img src="assets/images/dont_hover.gif" width="357px" class="imgs" id="surprise_cover">-->
+									<!--<img src="assets/images/no.gif" width="357px" class="imgs" id="surprise_cover2">-->
+									<!--<img src="assets/images/easter_egg.webp" width="357px" class="imgs">
+									<div class="timer"></div>-->
+								</div>
+							</div>
+
+							<img src="assets/images/astronaut1.webp" class=" img astronaut1 animate">
+							<img src="assets/images/planet1.webp" class="img first_planet">
+							<img src="assets/images/planet2.webp" class="img second_planet">
+							<img src="assets/images/star1.webp" class="img star" width="15px">
+
+						</section>
+
+						<section class="projects_section" id="projects">
+							<h2> &lt;projects&gt; </h2>
+							<div class="projects">
+								<div class="project">
+									<div class="monitor">
+										<img src="assets/images/monitor.webp" width="300px">
+									</div>
+									<div class="more">
+										<a href="">
+											<span class="icon_see"></span>
+											<p>Demo</p>
+										</a>
+										<a href="https://github.com/Focze-Eszter/CheckerWebApp/tree/main" target="_blank">
+											<span class="icon_github"></span>
+											<p>Github</p>
+										</a>
+										<a onclick="show('notepad1')">
+											<span class="icon_notepad"></span>
+											<p>Details</p>
+										</a>
+										<div class="notepad" id="notepad1">
+											<div class="bar">
+												<p>.txt</p>
+												<button onclick="hide('notepad1')"><img src="assets/images/close.webp" width="15px"/></button>
+											</div>
+											<div class="note">
+												<p></p>
+												<ul>
+													<li>HTML</li>
+													<li>CSS</li>
+													<li>Vanilla Javascript</li>
+													<li> ////////////////////////////////</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="project">
+									<div class="monitor">
+										<img src="assets/images/monitor.webp" width="300px">
+										<img src="assets/images/sublime_epiphany.gif" class="gif" width="250px">
+									</div>
+									<div class="more">
+										<a href="">
+											<span class="icon_see"></span>
+											<p>Demo</p>
+										</a>
+										<a href="https://github.com/Focze-Eszter/Sublime-Epiphany/tree/feature_add_static_pages" target="_blank">
+											<span class="icon_github"></span>
+											<p>Github</p>
+										</a>
+										<a onclick="show('notepad2')">
+											<span class="icon_notepad"></span>
+											<p>Details</p>
+										</a>
+										<div class="notepad" id="notepad2">
+											<div class="bar">
+												<p>Sublime Epiphany.txt</p>
+												<button onclick="hide('notepad2')"><img src="assets/images/close.webp" width="15px"/></button>
+											</div>
+											<div class="note">
+												<p></p>
+												<ul>
+													<li>HTML</li>
+													<li>CSS</li>
+													<li>Vanilla Javascript</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="project">
+									<div class="monitor">
+										<img src="assets/images/monitor.webp" width="300px">
+									</div>
+									<div class="more">
+										<a href="">
+											<span class="icon_see"></span>
+											<p>Demo</p>
+										</a>
+										<a href="https://github.com/Focze-Eszter/Touristaholic" target="_blank">
+											<span class="icon_github"></span>
+											<p>GitHub</p>
+										</a>
+										<a onclick="show('notepad3')">
+											<span class="icon_notepad"></span>
+											<p>Details</p>
+										</a>
+										<div class="notepad" id="notepad3">
+											<div class="bar">
+												<p>.txt</p>
+												<button onclick="hide('notepad3')"><img src="assets/images/close.webp" width="15px"/></button>
+											</div>
+											<div class="note">
+												<p></p>
+												<ul>
+													<li>HTML</li>
+													<li>CSS</li>
+													<li>Vanilla Javascript</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="project">
+									<div class="monitor">
+										<img src="assets/images/monitor.webp" width="300px">
+										<img src="assets/images/coming_soon.gif" class="gif" width="250px">
+									</div>
+									<div class="more">
+										<a href="">
+											<span class="icon_see"></span>
+											<p>Demo</p>
+										</a>
+										<a href="">
+											<span class="icon_github"></span>
+											<p>Github</p>
+										</a>
+										<a onclick="show('notepad4')">
+											<span class="icon_notepad"></span>
+											<p>Details</p>
+										</a>
+										<div class="notepad" id="notepad4">
+											<div class="bar">
+												<p>Coming Soon.txt</p>
+												<button onclick="hide('notepad4')"><img src="assets/images/close.webp" width="15px"/></button>
+											</div>
+											<div class="note">
+												<p></p>
+												<ul>
+													<li>HTML</li>
+													<li>CSS</li>
+													<li>Vanilla Javascript</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="project_imgs_group">
+								<img src="assets/images/planets.webp" width="150" class="img planets">
+								<img src="assets/images/satelite1.webp" class="img satelite animate">
+								<img src="assets/images/ufo.webp" class="img ufo" width="50">
+								<img src="assets/images/satelite2.webp" width="40" class="img satelite3">
+								<img src="assets/images/alien2.webp" width="40" class="img alien1">
+							</div>
+
+							<h2> &lt;/projects&gt; </h2>
+						</section>
+
+						<section class="education_section" id="education">
+							<h2>&lt;education&gt;</h2>
+
+							<div class="education_content">
+
+								<div class="edu">
+									<div class="window">
+										<div class="bar">
+											<p>Uni.txt</p>
+											<button><img src="assets/images/close.webp" width="15px"/></button>
+										</div>
+										<div class="window_body_education">
+											<ul>
+												<li><img src="assets/images/unitbv.webp" width="30px"></li>
+												<li><b>Transylvania University</b></li>
+												<li>Faculty of Sociology and Communication</li>
+												<li>Sociology</li>
+												<li>2020-2023</li>
+												<li>Bachelor degree</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="edu">
+									<div class="window">
+										<div class="bar">
+											<p>Programming Course.txt</p>
+											<button><img src="assets/images/close.webp" width="15px"/></button>
+										</div>
+										<div class="window_body_education">
+											<ul>						
+												<li><img src="assets/images/siit.webp" width="30px"></li>
+												<li><b>The Informal School of IT</b></li>
+												<li>Brașov</li>
+												<li>Java Programming</li>
+												<li>June 2020 - october 2020</li>
+												<li><a href="https://erp.scoalainformala.ro/store/diplomas/8a3f3a177dca0e487242bfdb21f0d8a4bb0ee913/Certificate.pdf" target="_blank">Certification</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="edu">
+									<div class="window">
+										<div class="bar">
+											<p>Highschool.txt</p>
+											<button><img src="assets/images/close.webp" width="15px"/></button>
+										</div>
+										<div class="window_body_education">
+											<ul>
+												<li><img src="assets/images/ecbz.webp" width="30px"></li>
+												<li><b>Economic College</b></li>
+												<li>Buzău</li>
+												<li>Technician in economic activities</li>
+												<li>2014 - 2018</li>
+												<li>Baccalaureate diploma</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<h2>&lt;/education&gt;</h2>
+
+							<img src="assets/images/asteroid.webp" class="img asteroid animate">
+							<img src="assets/images/alien1.webp" width="70" class="img alien">
+							<img src="assets/images/planet2.webp" width="110" class="img third_planet">
+							<img src="assets/images/satelite3.webp" width="150px" class="img satelite2"> 
+							<img src="assets/images/star3.webp" width="20" class="img star1">
+							<img src="assets/images/star4.webp" width="15" class="img star2">
+						</section>
+
+						<section class="skills_section" id="skills">
+							<h2>&lt;skills&gt;</h2>
+
+							<div class="skill_content">
+								<div class="window">
+									<div class="bar">
+										<p>Skillset.exe</p>
+										<button><img src="assets/images/close.webp" width="15px"/></button>
+									</div>
+									<div class="window_body">
+
+										<div class="skill_panel">
+											<div class="panel_title first_title active_tab"><p><b>Java Web dev</b></p></div>
+											<div class="panel_body first_panel active_body">
+												<ul>						
+													<li>>> Spring Framework</li>
+													<li>>> Spring Security</li>
+													<li>>> OAuth2</li>
+													<li>>> Maven</li>
+													<li>>> Thymeleaf template engine</li>
+													<li>>> MVC architecture</li>
+													<li>>> CRUD operations</li>
+													<li>>> JPA</li>
+													<li>>> JDBC</li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="skill_panel">
+											<div class="panel_title second_title"><p><b>Web</b></p></div>
+											<div class="panel_body second_panel">
+												<ul>						
+													<li>>> HTML</li>
+													<li>>> CSS</li>
+													<li>>> Responsive Design</li>
+													<li>>> Javascript</li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="skill_panel">
+											<div class="panel_title third_title"><p><b>Java</b></p></div>
+											<div class="panel_body third_panel">
+												<ul>						
+													<li>>> Object Oriented Programming</li>
+													<li>>> Concurrency</li>
+													<li></li>
+													<li></li>
+													<li></li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="skill_panel">
+											<div class="panel_title forth_title"><p><b>Database</b></p></div>
+											<div class="panel_body forth_panel">
+												<ul>						
+													<li>>> PostgreSQL</li>
+													<li></li>
+													<li></li>
+													<li></li>
+													<li></li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="skill_panel">
+											<div class="panel_title fifth_title"><p><b>Version control</b></p></div>
+											<div class="panel_body fifth_panel">
+												<ul>						
+													<li>>> Git</li>
+													<li>>> Github</li>
+													<li></li>
+													<li></li>
+													<li></li>
+												</ul>
+											</div>
+										</div>
+
+										<div class="skill_panel">
+											<div class="panel_title sixth_title"><p><b>Software tools</b></p></div>
+											<div class="panel_body sixth_panel">
+												<ul>						
+													<li>>> Gimp</li>
+													<li>>> Github</li>
+													<li></li>
+													<li></li>
+													<li></li>
+												</ul>
+											</div>
+										</div>
+
+										<button><p>OK</p></button>
+
+									</div>
+								</div>
+							</div>
+
+							<h2>&lt;/skills&gt;</h2>
+							
+							<img src="assets/images/alien3.webp" width="80" class="img alien2">
+							<img src="assets/images/satelite5.webp" width="100" class="img satelite4">
+							<img src="assets/images/planet6.webp" width="80" class="img planet6">
+							<img src="assets/images/galaxy.webp" width="200" class="img galaxy">
+							<img src="assets/images/astronaut2.webp" class="img astronaut2 animate">
+							<img src="assets/images/planet5.webp" width="60" class="img planet5">
+							<img src="assets/images/spaceship1.webp" width="50" class="img satelite5">
+							<img src="assets/images/star4.webp" width="1" class="img star2">
+
+
+						</section>
+
+						<section class="contact_section" id="contact">
+
+							<h2>&lt;contact&gt;</h2>
+
+							<!--<form action="https://formsubmit.co/fbc6c5f60507a1a9abf218538e259c1e" method="POST" onsubmit="return play()">-->
+								<form action="" onsubmit="play()">
+								<div class="contact_group">
+									<div class="form_group">
+										<label for="name">Name</label>
+										<input type="text" id="name" name="name">
+									</div>
+
+									<div class="form_group">
+										<label for="email">Email</label>
+										<input type="email" id="email" name="email" required>
+									</div>
+								</div>
+
+								<div class="contact_group2">
+									<div class="form_group">
+										<label for="subject">Subject</label>
+										<input type="text" id="subject" name="subject">
+									</div>
+
+									<div class="form_group">
+										<label for="message">Message</label>
+										<textarea id="message" required></textarea>
+									</div>
+								</div>
+
+								<input type="text" name="_honey" style="display:none"> <!--"honeypot" field - avoid spam by fooling scrapers. If a value is provided, the submission will be silently ignored. -->
+								<input type="hidden" name="_captcha" value="false"> <!--disable captcha-->
+								<input type="hidden" name="_next" value="https://yourdomain.co/thanks.html"> <!--custom thank you page-->
+								<input type="hidden" name="_autoresponse" value="This is an automated message. Thank you for your interest in me! I will make sure to contact you back as soon as possible."> <!--instant response to the user. I won't work if the captcha is disabled-->
+								<input type="hidden" name="_template" value="table"> <!--custom email message template-->
+
+
+								<div class="form_group">
+									<button type="submit">Send
+										<img src="assets/images/loading.gif" class="loading_gif" alt="loading animation" height="50" width="50">
+									</button>
+								</div>
+							</form>
+
+					       <div class="social_media">
+					       		<a href="https://www.linkedin.com/in/eszter-focze-160b7312a" class="button" target="_blank"><img src="assets/images/linkedin.webp">LinkedIn</a>
+					       		<a href="https://wa.me/40755197518" class="button" target="_blank"><img src="assets/images/whatsapp.webp">WhatsApp</a>
+					       		<a href="https://github.com/Focze-Eszter/" class="button" target="_blank"><img src="assets/images/github.webp">Github</a>
+					       		<a href="https://www.facebook.com/profile.php?id=100008347572279" class="button" target="_blank"><img src="assets/images/facebook.webp">Facebook</a>
+					       		<a href="https://www.instagram.com/estykafocze/" class="button" target="_blank"><img src="assets/images/instagram.webp">Instagram</a>
+					       </div>
+
+							<h2>&lt;/contact&gt;</h2>
+
+							<img src="assets/images/ozn.webp" width="80" class="img alien3">
+							<img src="assets/images/sun.webp" width="80" class="img sun">
+							<img src="assets/images/asteroids.webp" width="100" class="img asteroids">
+							<img src="assets/images/satelite4.webp" width="70" class="img satelite6">
+							<img src="assets/images/star2.webp" width="15" class="img star3">
+							<img src="assets/images/planet7.webp" width="40" class="img planet4">
+
+						</section>
+
+						<div class="download">
+					        <a href="assets/resume/CV_Focze_Eszter.pdf" class="button" download="CV_Focze_Eszter.pdf"><img src="assets/images/download.webp">Download Resume</a>
+					    </div>
+
+						<div class="back_to_top" id="up">
+							<a>
+								<img src="assets/images/rocket.webp" height="50px" class="rocket">
+								<img src="assets/images/rocket_flying.webp" height="60" class="fired_rocket">
+							</a>
+						</div>
+						<footer>
+							<p>Made with  &#x1F49A;  by Estera</p>
+						</footer>
+					</div>
+				</div>
+			</div> 
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
