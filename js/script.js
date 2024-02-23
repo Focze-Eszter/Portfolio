@@ -1,9 +1,5 @@
-
 var upButton = document.getElementById("up");
 var running = false;
-var surprise_gif1 = document.getElementById('surprise_cover');
-var surprise_gif2 = document.getElementById('surprise_cover2');
-var timer_countdown = document.querySelector('.timer');
 var titles = document.querySelectorAll('.panel_title');
 var animations = document.querySelectorAll('.animate');
 
@@ -36,9 +32,7 @@ if (titles.length) {
 }
 
 }
-
-
-    
+ 
 
 /*window.addEventListener("wheel", func, {passive: true}); /*reduce the time it takes to update the display after the user starts scrolling by wheel or touchpad*/
 window.open('mailto:foczeeszter21@gmail.com?subject=subject&body=message');
@@ -75,45 +69,6 @@ upButton.addEventListener("click", () => {
 
 /* scroll to top button ends here*/
 
-
-/*reveal easteregg function*/
-
-/*var delay = function (elem1, elem2, callback1, callback2) {
-    var timeout = null;
-   
-    elem1.onmouseover = function() {
-        // Set timeout to be a timer which will invoke callback after 1s
-        let timeout = setTimeout(callback1, 1000);
-        /*console.log(timeout);
-        var timeleft = 8;
-        var timer = setInterval(function(){
-          if(timeleft <= 0) {
-            clearInterval(timer);
-            timer_countdown.innerHTML = "Boom";
-          } else {
-            timer_countdown.innerHTML = timeleft + " seconds remaining";
-          }
-          timeleft -= 1;
-        }, 1000);   */
-
-   /* };
-
-    elem2.onmouseover = function() {
-        // Set timeout to be a timer which will invoke callback after 1s
-        let timeout2 = setTimeout(callback2, 0);
-    };
-
-    elem1.onmouseout = function() {
-        // Clear any timers set to timeout
-        clearTimeout(timeout);
-    }
-
-    elem2.onmouseout = function() {
-        // Clear any timers set to timeout
-        clearTimeout(timeout);
-    }
-
-};*/
 
 
 document.addEventListener("DOMContentLoaded", function() { 
@@ -172,28 +127,284 @@ sections.forEach((section) => {
     observerTwo.observe(section);
 });
 
-
-/*delay(surprise_gif1, surprise_gif2, function() {
-    surprise_gif1.style.display = 'none';}, function() {
-    surprise_gif2.style.display = 'none';});*/
-
 activatePanel();
 
 
+/* The music player starts here*/ 
+
+const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: '#5bf870',
+    progressColor: '#2e6930',
+    height: 50
+  });
+  wavesurfer.load('/assets/media/song.mp3');
+  //duration of track functions
+  const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const secondsRemainder = Math.round(seconds) % 60;
+  const paddedSeconds = `0${secondsRemainder}`.slice(-2);
+  return `${minutes}:${paddedSeconds}`;
+  };
+  
+  const timeEl = document.querySelector('#time');
+  const durationEl = document.querySelector('#duration');
+  
+  wavesurfer.on('decode', function(duration) {
+  durationEl.textContent = formatTime(duration);
+  });
+  
+  wavesurfer.on('timeupdate', function(currentTime) {
+  timeEl.textContent = formatTime(currentTime);
+  });
+  
+  // Play button
+  document.querySelector('.play').addEventListener('click', function() {
+  wavesurfer.play();
+  });
+  
+  // Forward button
+  document.querySelector('.forwards').addEventListener('click', function() {
+  wavesurfer.skip(5); // Adjust the skip duration as desired
+  });
+  
+  // Backward button
+  document.querySelector('.backwards').addEventListener('click', function() {
+  wavesurfer.skip(-5); // Adjust the skip duration as desired
+  });
+  
+  // Pause button
+  document.querySelector('.pause').addEventListener('click', function() {
+  wavesurfer.pause();           
+  });
+  
+  // Stop button
+  document.querySelector('.stop').addEventListener('click', function() {
+  wavesurfer.stop();
+  });
+  
+  // volume button
+  const volumeButton = document.querySelector('.volume');
+  const volumeSlider = document.getElementById('volumeSlider');
+  
+  volumeButton.addEventListener('click', function() {
+  volumeSlider.style.display = 'block';
+  volumeSlider.style.transform= 'rotate(270deg)';
+  
+  });
+  
+  volumeSlider.addEventListener('input', function() {
+  var volumeValue = parseFloat(this.value);
+  wavesurfer.setVolume(volumeValue);
+  });
+  
+  document.addEventListener('mouseup', (event) => {
+  const target = event.target;
+  if (target !== volumeButton && target !== volumeSlider) {
+  volumeSlider.style.display = 'none';
+  }
+  });
+
+  /* The music player starts here*/ 
+
+  
+  /* Display lyrics starts here */ 
+  
+    let lastDisplayedLine = null;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const audioPlayer = wavesurfer;
+        const lyricsContainer = document.getElementById('lyrics');
+        let isSeeking = false;
+
+        // Parse LRC content into an array of objects { time, text }
+        function parseLRC(data) {
+            const lines = data.split('\n');
+
+            const regex = /\[(\d{2}):(\d{2}\.\d{2})\](.*)/;
+
+            return lines.map(line => {
+                const match = regex.exec(line);
+                if (match) {
+                    const minutes = parseInt(match[1], 10);
+                    const seconds = parseFloat(match[2]);
+                    const time = minutes * 60 + seconds;
+                    const text = match[3].trim();
+                    return { time, text };
+                }
+                return null;
+            }).filter(Boolean);
+        }        
 
 
+        // Display lyrics based on the current time of the audio
+        function displayLyrics(lyrics) {
+            const currentTime = wavesurfer.currentTime;
+        
+            // Find the lyric line where the current time is within a reasonable range
+            const currentLine = findClosestLyric(lyrics, currentTime, 0.5); // Adjust the time range as needed
+        
+            // Check if the current line is different from the previously displayed lyric
+            if (currentLine && (!lastDisplayedLine || currentLine !== lastDisplayedLine)) {
+                lyricsContainer.textContent = currentLine.text;
+                lastDisplayedLine = currentLine;
+            }
+        }
+
+        // Find the closest lyric within a time range
+        function findClosestLyric(lyrics, currentTime, timeRange) {
+            let closestLine = null;
+            let closestTimeDifference = Infinity;
+
+            for (const line of lyrics) {
+                const timeDifference = Math.abs(line.time - currentTime);
+
+                if (timeDifference < timeRange && timeDifference < closestTimeDifference) {
+                    closestLine = line;
+                    closestTimeDifference = timeDifference;
+                }
+            }
+
+            return closestLine;
+        }
 
 
+        // Load and parse the .lrc file
+        fetch('assets/media/song.lrc')
+        .then(response => response.text())
+        .then(data => {
+        const lyrics = parseLRC(data);
+
+        // Define lyricsContainer
+        const lyricsContainer = document.getElementById('lyrics');
+
+        // Function to update the current verse based on the current time
+        function updateLyricsScroll(currentTime) {
+            const currentLine = findClosestLyric(lyrics, currentTime, 0.5);
+            if (currentLine) {
+            // Update the displayed lyric only if it's found
+            lyricsContainer.textContent = currentLine.text;
+            }
+        }
+
+        // Start the lyrics auto-scrolling when the audio starts playing
+        wavesurfer.on('play', function() {
+            // Update lyrics when audio starts playing
+            updateLyricsScroll(wavesurfer.getCurrentTime());
+        });
+
+        // Event listener for time updates
+        wavesurfer.on('timeupdate', function () {
+            // Display lyrics based on the current time
+            updateLyricsScroll(wavesurfer.getCurrentTime());
+        });
+    });
+    
+      /* Display lyrics ends here */ 
+});
 
 
+//NASA Mars Weather API
+
+//https://api.nasa.gov/insight_weather/?api_key=tfIFb6lDTBjtcDZD2cKJtmjbh8vyv8Gy4lIGFZgf&feedtype=json&ver=1.0
 
 
+// Function to fetch rover photos
+const fetchRoverPhotos = (rover, sol, camera, page) => {
+    const apiKey = 'tfIFb6lDTBjtcDZD2cKJtmjbh8vyv8Gy4lIGFZgf'; 
+    const apiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}&api_key=${apiKey}`;
+    
+    fetch(apiUrl)
+    .then(response => {
+    // Check if the response status is 404
+    if (!response.ok || response.status === 404) {
+    console.log("length of 0 block 1");
+    return fetch(apiUrl);
+    }
+    return response.json();
+    })
+    .then(data => {
+    // Access and process the photo data
+    const photos = data.photos;
+    console.log(photos);
+    /*console.log(photos[0].img_src);*/
+    if (photos.length == 0) {
+    console.log("length of 0 block");
+    
+    }
+    else if (photos !== null && photos.length > 0) {
+    document.querySelector('#random_mars_img').setAttribute('src', photos[0].img_src);  //show image on page 
+    
+    } else {
+    document.querySelector('#random_mars_img').setAttribute('src', photos[1].img_src);  //show image on page 
+    console.log("second img");
+    }
+    })
+    .catch(error => {
+    console.error(error);
+    });
+    };
+    
+    //Random number generator function for generating different photos
+    function generateRandomNumber() {
+    const min = 50;
+    const max = 1000;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+    }
+    
+    // Example usage
+    const random_number = generateRandomNumber();
+    
+    // Example usage: Fetch photos from Curiosity rover, sol 1000, with the Front Hazard Avoidance Camera (FHAZ)
+    fetchRoverPhotos('curiosity', random_number, 'fhaz', 1);
+    
 
+/* parallax effect starts here */
 
+    var sky = document.querySelector('.cyber_bg_img_back');
+    var relief = document.querySelector('.cyber_bg_img_front');
+    var me = document.querySelector('.me');
+    
+    window.addEventListener('scroll', function() {
+        var value = this.window.scrollY;
+        sky.style.top = -50 + value + 'px';
+        relief.style.bottom = -50 - value * (-0.1) + 'px'; 
+        me.style.bottom = -70 - (value) * (-0.08) + 'px'; 
+    });
 
+/* parallax effect ends here */
 
+/* show music player and lyrics starts here*/
 
+document.getElementById('music_folder_icon').onclick=function(){
+    document.querySelector('.music_player').style.display='block';
+    document.querySelector('.lyrics_window').style.display='block';
+  };
 
+/* show music player and lyrics ends here*/
 
+/* hide music player and lyrics starts here*/
 
+document.getElementById('close_window').onclick=function(){
+    document.querySelector('.music_player').style.display='none';
+    document.querySelector('.lyrics_window').style.display='none';
+  };
 
+/* hide music player and lyrics ends here*/
+
+/* show vituvian window starts here*/
+
+document.getElementById('paint_folder_icon').onclick=function(){
+    document.querySelector('.vituvian_window').style.display='block';
+  };
+
+/* show vituvian window ends here*/
+
+/* hide vituvian window starts here*/
+
+document.getElementById('vituvian_close_window').onclick=function(){
+    document.querySelector('.vituvian_window').style.display='none';
+  };
+
+/* hide vituvian window ends here*/
