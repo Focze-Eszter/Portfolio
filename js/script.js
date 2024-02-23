@@ -1,3 +1,4 @@
+
 var upButton = document.getElementById("up");
 var running = false;
 var titles = document.querySelectorAll('.panel_title');
@@ -15,23 +16,21 @@ function hide(target) {
 
 function activatePanel() {
    
-if (titles.length) {
+    if (titles.length) {
 
-  titles.forEach((title) => {
-    title.addEventListener('click', (e) => {
-      titles.forEach((title) => {
-          title.classList.remove('active_tab');
-          title.nextSibling.nextSibling.classList.remove('active_body'); /*panel_body class*/
-      });
+    titles.forEach((title) => {
+        title.addEventListener('click', (e) => {
+        titles.forEach((title) => {
+            title.classList.remove('active_tab');
+            title.nextSibling.nextSibling.classList.remove('active_body'); /*panel_body class*/
+        });
 
-      e.preventDefault();
-      title.classList.add('active_tab');
-      title.nextSibling.nextSibling.classList.add('active_body');
+        e.preventDefault();
+        title.classList.add('active_tab');
+        title.nextSibling.nextSibling.classList.add('active_body');
+        });
     });
- });
-}
-
-}
+}}
  
 
 /*window.addEventListener("wheel", func, {passive: true}); /*reduce the time it takes to update the display after the user starts scrolling by wheel or touchpad*/
@@ -86,10 +85,9 @@ const observer = new IntersectionObserver(entries => {
         entry.target.classList.toggle("show", entry.isIntersecting);
         if(entry.isIntersecting) observer.unobserve(entry.target) /*the animation plays only once, as soon as they are visible on the page, we are removing them from the observer, so they no longer call the function*/
     });
-}, 
-{
-threshold: 1, /*1 - 100% of the element must be on the screen before the animation plays*/
-}
+    }, {
+    threshold: 1, /*1 - 100% of the element must be on the screen before the animation plays*/
+    }
 );
 
 animations.forEach(animation => {
@@ -101,31 +99,30 @@ const nav = document.querySelector('nav');
 const nav_list = document.querySelectorAll('.nav_list li');
 
 
-const options = {
+    const options = {
 
-    treshold: "1",
-    rootMargin: "-200px 0px -100px 0px", /*dupa ce atinge elementul, se executa functia doar dupa cati pixeli sunt setati la marginea viewport-ului*/
-};
+        treshold: "1",
+        rootMargin: "-200px 0px -100px 0px", /*dupa ce atinge elementul, se executa functia doar dupa cati pixeli sunt setati la marginea viewport-ului*/
+    };
 
-const observerTwo = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-        if (e.isIntersecting) {
+    const observerTwo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) {
 
-            nav_list.forEach((link) => {
+                nav_list.forEach((link) => {
 
-            if (e.target.id === link.dataset.nav) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
-});
-    }
+                if (e.target.id === link.dataset.nav) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        }});
+    }, options);
+
+    sections.forEach((section) => {
+        observerTwo.observe(section);
     });
-}, options);
-
-sections.forEach((section) => {
-    observerTwo.observe(section);
-});
 
 activatePanel();
 
@@ -138,6 +135,7 @@ const wavesurfer = WaveSurfer.create({
     progressColor: '#2e6930',
     height: 50
   });
+  
   wavesurfer.load('/assets/media/song.mp3');
   //duration of track functions
   const formatTime = (seconds) => {
@@ -155,32 +153,32 @@ const wavesurfer = WaveSurfer.create({
   });
   
   wavesurfer.on('timeupdate', function(currentTime) {
-  timeEl.textContent = formatTime(currentTime);
+    timeEl.textContent = formatTime(currentTime);
   });
   
   // Play button
   document.querySelector('.play').addEventListener('click', function() {
-  wavesurfer.play();
+    wavesurfer.play();
   });
   
   // Forward button
   document.querySelector('.forwards').addEventListener('click', function() {
-  wavesurfer.skip(5); // Adjust the skip duration as desired
+    wavesurfer.skip(5);
   });
   
   // Backward button
   document.querySelector('.backwards').addEventListener('click', function() {
-  wavesurfer.skip(-5); // Adjust the skip duration as desired
+    wavesurfer.skip(-5);
   });
   
   // Pause button
   document.querySelector('.pause').addEventListener('click', function() {
-  wavesurfer.pause();           
+    wavesurfer.pause();           
   });
   
   // Stop button
   document.querySelector('.stop').addEventListener('click', function() {
-  wavesurfer.stop();
+    wavesurfer.stop();
   });
   
   // volume button
@@ -188,21 +186,20 @@ const wavesurfer = WaveSurfer.create({
   const volumeSlider = document.getElementById('volumeSlider');
   
   volumeButton.addEventListener('click', function() {
-  volumeSlider.style.display = 'block';
-  volumeSlider.style.transform= 'rotate(270deg)';
-  
+    volumeSlider.style.display = 'block';
+    volumeSlider.style.transform= 'rotate(270deg)'; 
   });
   
   volumeSlider.addEventListener('input', function() {
-  var volumeValue = parseFloat(this.value);
-  wavesurfer.setVolume(volumeValue);
+    var volumeValue = parseFloat(this.value);
+    wavesurfer.setVolume(volumeValue);
   });
   
   document.addEventListener('mouseup', (event) => {
   const target = event.target;
-  if (target !== volumeButton && target !== volumeSlider) {
-  volumeSlider.style.display = 'none';
-  }
+    if (target !== volumeButton && target !== volumeSlider) {
+    volumeSlider.style.display = 'none';
+    }
   });
 
   /* The music player starts here*/ 
@@ -299,58 +296,55 @@ const wavesurfer = WaveSurfer.create({
             updateLyricsScroll(wavesurfer.getCurrentTime());
         });
     });
-    
       /* Display lyrics ends here */ 
 });
 
 
 //NASA Mars Weather API
 
-//https://api.nasa.gov/insight_weather/?api_key=tfIFb6lDTBjtcDZD2cKJtmjbh8vyv8Gy4lIGFZgf&feedtype=json&ver=1.0
-
-
 // Function to fetch rover photos
 const fetchRoverPhotos = (rover, sol, camera, page) => {
-    const apiKey = 'tfIFb6lDTBjtcDZD2cKJtmjbh8vyv8Gy4lIGFZgf'; 
-    const apiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}&api_key=${apiKey}`;
-    
+    var apiKey = config.NASA_API_KEY;
+    var apiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}&api_key=${apiKey}`;
+ 
     fetch(apiUrl)
     .then(response => {
     // Check if the response status is 404
     if (!response.ok || response.status === 404) {
-    console.log("length of 0 block 1");
-    return fetch(apiUrl);
+        console.log("length of 0 block 1");
+        return fetch(apiUrl);
     }
-    return response.json();
+        return response.json();
     })
     .then(data => {
     // Access and process the photo data
     const photos = data.photos;
-    console.log(photos);
+        console.log(photos);
     /*console.log(photos[0].img_src);*/
-    if (photos.length == 0) {
-    console.log("length of 0 block");
-    
+        if (photos.length == 0) {
+        console.log("length of 0 block");
     }
+    
     else if (photos !== null && photos.length > 0) {
-    document.querySelector('#random_mars_img').setAttribute('src', photos[0].img_src);  //show image on page 
+        document.querySelector('#random_mars_img').setAttribute('src', photos[0].img_src);  //show image on page 
     
     } else {
-    document.querySelector('#random_mars_img').setAttribute('src', photos[1].img_src);  //show image on page 
-    console.log("second img");
-    }
+        document.querySelector('#random_mars_img').setAttribute('src', photos[1].img_src);  //show image on page 
+        console.log("second img");
+        }
     })
+    
     .catch(error => {
-    console.error(error);
-    });
+        console.error(error);
+        });
     };
     
     //Random number generator function for generating different photos
     function generateRandomNumber() {
-    const min = 50;
-    const max = 1000;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    return randomNumber;
+        const min = 50;
+        const max = 1000;
+        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        return randomNumber;
     }
     
     // Example usage
