@@ -270,6 +270,31 @@ a {
   transform: translateY(80px);
 }
 
+.cyber_bg_window {
+  position: relative;
+  width: 600px;
+  height: 440px;
+  transform: translate(-70px, -30px);
+  overflow: hidden;
+  z-index: -1;
+}
+.cyber_bg_window .window_body .cyber_bg_img_back {
+  position: absolute;
+  top: -50px;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.cyber_bg_window .window_body .cyber_bg_img_front {
+  position: absolute;
+  bottom: -50px;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 .main_window .window_body {
   display: flex;
   justify-content: center;
@@ -421,7 +446,10 @@ background-color: black;
 
 #music_folder_icon {
   top: 10%;
+  top: 10%;
   right: 40%;
+  right: 40%;
+  z-index: -1;
 }
 
 .music_player {
@@ -438,18 +466,29 @@ background-color: black;
   height: 90%;
 }
 
-.green_cover {
+/* Mars pic window */
+#nasa_folder_icon {
+  display: flex;
+  text-align: center;
+  top: 5%;
+  right: 40%;
+}
+.nasa_pic_window {
+  display: none;
   position: absolute;
-  background-color: rgba(5, 151, 24, 0.5);
-  z-index: 100;
-  top: 11%;
-  right: 25%;
+  top: 5%;
 }
 
-.green_cover #random_mars_img {
-  z-index: -1;
+.green_cover {
   position: absolute;
-  opacity: .8;
+  height: 250px;
+  width: 250px;
+  background-color: rgba(10, 225, 39, 0.5);
+  z-index: 100;
+}
+
+#random_mars_img {
+  z-index: -1;
 }
 
 #close_window {
@@ -463,20 +502,22 @@ background-color: black;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
   z-index: 0;
 }
 
 .folder:active, .folder:hover {
   background-color: rgba(91, 248, 112, .4);
-  cursor: url('assets/cursors/Link Select.cur'), auto;;
+  cursor: url('assets/cursors/Link Select.cur'), auto;
 }
 
 .folder img, .folder p {
-  margin: 0;
   cursor: url('assets/cursors/Link Select.cur'), auto;
   color: #5bf870;
+  font-size: .8rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .lyrics_window {
@@ -530,33 +571,6 @@ background-color: black;
   display: flex;
   justify-content: center;
   background-color: black;
-}
-
-.cyber_bg_window {
-  position: relative;
-  width: 600px;
-  height: 440px;
-  transform: translate(-70px, -30px);
-  overflow: hidden;
-  z-index: -1;
-}
-
-.cyber_bg_window .window_body .cyber_bg_img_back {
-  position: absolute;
-  top: -50px;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.cyber_bg_window .window_body .cyber_bg_img_front {
-  position: absolute;
-  bottom: -50px;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  z-index: -1;
 }
 
 /*NEW CSS ends*/

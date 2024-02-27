@@ -369,6 +369,19 @@ const fetchRoverPhotos = (rover, sol, camera, page) => {
 
 /* parallax effect ends here */
 
+
+/* show mars window starts here*/
+document.getElementById('nasa_folder_icon').onclick=function(){
+    document.querySelector('.nasa_pic_window').style.display='block';
+  };
+/* show mars window ends here*/
+/* hide mars pic here*/
+document.getElementById('mars_close_window').onclick=function(){
+    document.querySelector('.nasa_pic_window').style.display='none';
+  };
+/* hide mars pic ends here*/
+
+
 /* show music player and lyrics starts here*/
 
 document.getElementById('music_folder_icon').onclick=function(){
