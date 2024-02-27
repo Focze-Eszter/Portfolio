@@ -345,7 +345,7 @@ a {
 .window .bar .bar_division p, .window .bar .bar_division img {
   padding-left: 5px;
   letter-spacing: 1px;
-  margin: 0;
+  margin: auto;
 }
 
 .window .bar button {
@@ -446,10 +446,12 @@ background-color: black;
 
 #music_folder_icon {
   top: 10%;
-  top: 10%;
-  right: 40%;
   right: 40%;
   z-index: -1;
+}
+
+#nasa_folder_icon p {
+  color: #2e6930;
 }
 
 .music_player {

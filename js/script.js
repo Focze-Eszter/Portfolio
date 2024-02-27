@@ -303,56 +303,55 @@ const wavesurfer = WaveSurfer.create({
 //NASA Mars Weather API
 
 // Function to fetch rover photos
+
 const fetchRoverPhotos = (rover, sol, camera, page) => {
     var apiKey = config.NASA_API_KEY;
     var apiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}&api_key=${apiKey}`;
- 
-    fetch(apiUrl)
-    .then(response => {
-    // Check if the response status is 404
-    if (!response.ok || response.status === 404) {
-        console.log("length of 0 block 1");
-        return fetch(apiUrl);
-    }
-        return response.json();
-    })
-    .then(data => {
-    // Access and process the photo data
-    const photos = data.photos;
-        console.log(photos);
-    /*console.log(photos[0].img_src);*/
-        if (photos.length == 0) {
-        console.log("length of 0 block");
-    }
     
-    else if (photos !== null && photos.length > 0) {
-        document.querySelector('#random_mars_img').setAttribute('src', photos[0].img_src);  //show image on page 
-    
-    } else {
-        document.querySelector('#random_mars_img').setAttribute('src', photos[1].img_src);  //show image on page 
-        console.log("second img");
-        }
-    })
-    
-    .catch(error => {
-        console.error(error);
-        });
+    const fetchPhotos = () => {
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok || response.status === 404) {
+                    throw new Error('Photos not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const photos = data.photos;
+                if (photos.length === 0) {
+                    throw new Error('No photos found');
+                    fetchPhotos();
+                } else {
+                    document.querySelector('#random_mars_img').setAttribute('src', photos[0].img_src); // Show image on page
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                // Retry fetching photos
+                fetchPhotos();
+            });
     };
     
-    //Random number generator function for generating different photos
-    function generateRandomNumber() {
-        const min = 50;
-        const max = 1000;
-        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-        return randomNumber;
-    }
-    
-    // Example usage
+    fetchPhotos();
+};
+
+// Add event listener to nasa_folder_icon
+document.getElementById('nasa_folder_icon').addEventListener('click', () => {
+    // Display window
+    document.querySelector('.nasa_pic_window').style.display='block';
+    // Random number generator function for generating different photos
     const random_number = generateRandomNumber();
-    
-    // Example usage: Fetch photos from Curiosity rover, sol 1000, with the Front Hazard Avoidance Camera (FHAZ)
+    // Fetch photos from Curiosity rover, sol 1000, with the Front Hazard Avoidance Camera (FHAZ)
     fetchRoverPhotos('curiosity', random_number, 'fhaz', 1);
-    
+});
+
+// Random number generator function for generating different photos
+function generateRandomNumber() {
+    const min = 50;
+    const max = 1000;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+}
 
 /* parallax effect starts here */
 
@@ -370,11 +369,6 @@ const fetchRoverPhotos = (rover, sol, camera, page) => {
 /* parallax effect ends here */
 
 
-/* show mars window starts here*/
-document.getElementById('nasa_folder_icon').onclick=function(){
-    document.querySelector('.nasa_pic_window').style.display='block';
-  };
-/* show mars window ends here*/
 /* hide mars pic here*/
 document.getElementById('mars_close_window').onclick=function(){
     document.querySelector('.nasa_pic_window').style.display='none';
