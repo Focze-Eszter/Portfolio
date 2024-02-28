@@ -402,7 +402,7 @@ document.getElementById('music_folder_icon').onclick=function(){
 
 /* hide music player and lyrics starts here*/
 
-document.getElementById('close_window').onclick=function(){
+document.querySelector('.music_close_window').onclick=function(){
     document.querySelector('.music_player').style.display='none';
     document.querySelector('.lyrics_window').style.display='none';
   };
