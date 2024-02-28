@@ -335,10 +335,14 @@ a {
   align-items: center;
   width: 100%;
   max-height: 25px !important;
+  background-image: url("assets/images/8_bit_pattern.webp");
+  background-repeat: no-repeat;
+  background-size: cover;;
   background-color: #2e6930;
   text-transform: lowercase;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  border-bottom: solid 1px #32CD32;
 }
 
 .window .bar .bar_division {
