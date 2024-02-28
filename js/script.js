@@ -368,6 +368,21 @@ function generateRandomNumber() {
 
 /* parallax effect ends here */
 
+/* show about me window */
+
+document.querySelector('.main_text h3 span').onclick=function(){
+    document.querySelector('.about_me_window').style.display='block';
+  };
+
+/* about me window code ends here*/
+
+/* hide about me window*/
+
+document.getElementById('about_me_close_window').onclick=function(){
+    document.querySelector('.about_me_window').style.display='none';
+  };
+
+/* hide music player and lyrics ends here*/
 
 /* hide mars pic here*/
 document.getElementById('mars_close_window').onclick=function(){
