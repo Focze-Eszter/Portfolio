@@ -264,6 +264,7 @@ a {
   border-right: 2px solid black;
   border-left: 2px solid white;
   border-top: 2px solid white;
+  margin: 1vw;
 }
 
 .main_window {
@@ -841,7 +842,7 @@ background-color: black;
 /*the education section starts here*/
 
 .content .education_section .education_content {
-  display: flex;
+  /*display: flex;*/
   flex-direction: row;
   height: 50vh;
   width: 100vw;
@@ -854,16 +855,16 @@ background-color: black;
 }
 
 .content .education_section .education_content .edu {
-  display: flex;
+  display: flex!important;
   justify-content: center;
   align-items: center;
-  width: 33vw;
+  /*width: 33vw;*/
   color: #5bf870;
 }
 
 .content .education_section .education_content .edu ul {
   padding: 40px;
-
+  height: 200px;
 }
 
 .content .education_section .education_content .edu ul li img {
@@ -877,6 +878,7 @@ background-color: black;
   font-size: .7rem;
   line-height: 30px;
   letter-spacing: 1px;
+  text-align: left;
 }
 
 .content .education_section .education_content .edu ul li:nth-of-type(-n+2) { /*first two li elements*/
@@ -912,10 +914,77 @@ background-color: black;
 
 .education_content .edu .window_body_education {
  position: static;
+ /*position: relative;*/
  border: 1px solid #32CD32; 
  border-bottom-left-radius: 2px;
  border-bottom-right-radius: 2px;
 }
+
+/* Eductaion slider starts here */
+
+.slider_container {
+  position: relative;
+}
+
+.bullet_container {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Hide overflow to avoid content spilling */
+}
+
+.bullet {
+  margin-right: 10px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #5bf870;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.bullet.active {
+  opacity: 1;
+}
+
+.slider_single {
+  position: absolute;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.slider_single.active {
+  opacity: 1;
+}
+
+.slider_left, .slider_right {
+  position: absolute;
+  top: 45%;
+  padding: 10px;
+  color: #ffffff;
+  border: 1px solid #5bf870;
+  cursor: pointer;
+  /*background-color: rgba(0, 0, 0, 0.5); /* Slight background for better visibility */
+}
+
+.slider_left {
+  left: 10px;
+}
+
+.slider_right {
+  right: 10px;
+}
+
+.not_visible {
+  display: none;
+}
+
+/* Eductaion slider ends here */
 
 /*image group3 starts*/
 .education_section .third_planet {

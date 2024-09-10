@@ -3,6 +3,17 @@ var upButton = document.getElementById("up");
 var running = false;
 var titles = document.querySelectorAll('.panel_title');
 var animations = document.querySelectorAll('.animate');
+// education slider window
+const repeat = false;
+const noArrows = false;
+const noBullets = false;
+
+//const container = document.querySelector('.slider_container');
+//const slides = document.querySelectorAll('.slider_single');
+//const slideTotal = slides.length - 1;
+//let slideCurrent = 0;
+// education slider window
+
 
 
 /*show note/ hide note functions starts here*/
@@ -424,3 +435,204 @@ document.getElementById('vituvian_close_window').onclick=function(){
   };
 
 /* hide vituvian window ends here*/
+
+/* education slider window starts here */ /*
+
+function initializeSlider(sliderContainer) {
+
+function initBullets() {
+    if (noBullets) return;
+    const bulletContainer = document.createElement('div');
+    bulletContainer.classList.add('bullet_container');
+    
+    slides.forEach((_, i) => {
+        const bullet = document.createElement('div');
+        bullet.classList.add('bullet');
+        bullet.id = `bullet_${i}`;
+        bullet.addEventListener('click', () => goToIndexSlide(i));
+        bulletContainer.appendChild(bullet);
+
+    });
+    
+     const parentWindow = document.querySelector('.slider_container');
+    if (parentWindow) {
+        parentWindow.appendChild(bulletContainer);
+        updateBullet();
+    }
+}
+
+function initArrows() {
+    if (noArrows) return;
+    
+    const createArrow = (className, action) => {
+        const arrow = document.createElement('a');
+        arrow.classList.add(className);
+        arrow.textContent = className.includes('left') ? '‹' : '›';
+        arrow.addEventListener('click', action);
+        container.appendChild(arrow);
+
+        const parentWindow = document.querySelector('.slider_container');
+        if (parentWindow) {
+            parentWindow.appendChild(arrow);
+        }
+    };
+    
+    createArrow('slider_left', slideLeft);
+    createArrow('slider_right', slideRight);
+}
+
+function updateBullet() {
+    if (noBullets) return;
+    
+    document.querySelectorAll('.bullet').forEach((bullet, i) => {
+        bullet.classList.toggle('active', i === slideCurrent);
+    });
+}
+
+function updateSlides() {
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        slide.style.display = 'none';
+        if (index === slideCurrent) {
+            slide.classList.add('active');
+            slide.style.display = 'block';
+            slide.style.display = 'flex';
+        }
+    });
+    updateBullet();
+}
+
+function slideRight() {
+    slideCurrent = (slideCurrent + 1) % slides.length;
+    updateSlides();
+    checkRepeat();
+}
+
+function slideLeft() {
+    slideCurrent = (slideCurrent - 1 + slides.length) % slides.length;
+    updateSlides();
+    checkRepeat();
+}
+
+function goToIndexSlide(index) {
+    slideCurrent = index;
+    updateSlides();
+}
+
+function checkRepeat() {
+    if (!repeat) {
+        document.querySelector('.slider_left').classList.toggle('not_visible', slideCurrent === 0);
+        document.querySelector('.slider_right').classList.toggle('not_visible', slideCurrent === slideTotal);
+    }
+}
+
+function slideInitial() {
+    initBullets();
+    initArrows();
+    updateSlides();
+}
+
+slideInitial();
+}
+
+document.querySelectorAll('.slider_container').forEach(initializeSlider);
+
+
+/* education slider window ends here */
+
+// Function to initialize a single slider
+function initializeSlider(sliderContainer) {
+    const slides = sliderContainer.querySelectorAll('.slider_single');
+    const slideTotal = slides.length - 1;
+    let slideCurrent = 0;
+
+    function initBullets() {
+        if (noBullets) return;
+        const bulletContainer = document.createElement('div');
+        bulletContainer.classList.add('bullet_container');
+
+        slides.forEach((_, i) => {
+            const bullet = document.createElement('div');
+            bullet.classList.add('bullet');
+            bullet.id = `bullet_${i}`;
+            bullet.addEventListener('click', () => goToIndexSlide(i));
+            bulletContainer.appendChild(bullet);
+        });
+
+        sliderContainer.appendChild(bulletContainer);
+        updateBullet();
+    }
+
+    function initArrows() {
+        if (noArrows) return;
+
+        const createArrow = (className, action) => {
+            const arrow = document.createElement('a');
+            arrow.classList.add(className);
+            arrow.textContent = className.includes('left') ? '‹' : '›';
+            arrow.addEventListener('click', action);
+            sliderContainer.appendChild(arrow);
+        };
+
+        createArrow('slider_left', slideLeft);
+        createArrow('slider_right', slideRight);
+    }
+
+    function updateBullet() {
+        if (noBullets) return;
+
+        sliderContainer.querySelectorAll('.bullet').forEach((bullet, i) => {
+            bullet.classList.toggle('active', i === slideCurrent);
+        });
+    }
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+            if (index === slideCurrent) {
+                slide.classList.add('active');
+                slide.style.display = 'flex';
+            }
+        });
+        updateBullet();
+    }
+
+    function slideRight() {
+        slideCurrent = (slideCurrent + 1) % slides.length;
+        updateSlides();
+        checkRepeat();
+    }
+
+    function slideLeft() {
+        slideCurrent = (slideCurrent - 1 + slides.length) % slides.length;
+        updateSlides();
+        checkRepeat();
+    }
+
+    function goToIndexSlide(index) {
+        slideCurrent = index;
+        updateSlides();
+    }
+
+    function checkRepeat() {
+        if (!repeat) {
+            sliderContainer.querySelector('.slider_left').classList.toggle('not_visible', slideCurrent === 0);
+            sliderContainer.querySelector('.slider_right').classList.toggle('not_visible', slideCurrent === slideTotal);
+        }
+    }
+
+    function slideInitial() {
+        initBullets();
+        initArrows();
+        updateSlides();
+    }
+
+    slideInitial();
+}
+
+// Initialize all sliders on the page
+document.querySelectorAll('.slider_container').forEach(initializeSlider);
+
+
+
