@@ -914,13 +914,12 @@ background-color: black;
 
 .education_content .edu .window_body_education {
  position: static;
- /*position: relative;*/
  border: 1px solid #32CD32; 
  border-bottom-left-radius: 2px;
  border-bottom-right-radius: 2px;
 }
 
-/* Eductaion slider starts here */
+/* Eductaion sliders starts here */
 
 .slider_container {
   position: relative;
@@ -932,7 +931,6 @@ background-color: black;
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: hidden; /* Hide overflow to avoid content spilling */
 }
 
 .bullet {
@@ -942,7 +940,7 @@ background-color: black;
   border-radius: 50%;
   background-color: #5bf870;
   opacity: 0.5;
-  cursor: pointer;
+  cursor: url('assets/cursors/Link Select.cur'), auto;
 }
 
 .bullet.active {
@@ -967,24 +965,22 @@ background-color: black;
   top: 45%;
   padding: 10px;
   color: #ffffff;
-  border: 1px solid #5bf870;
-  cursor: pointer;
-  /*background-color: rgba(0, 0, 0, 0.5); /* Slight background for better visibility */
+  cursor: url('assets/cursors/Link Select.cur'), auto;
 }
 
 .slider_left {
-  left: 10px;
+  left: 5px;
 }
 
 .slider_right {
-  right: 10px;
+  right: 5px;
 }
 
 .not_visible {
   display: none;
 }
 
-/* Eductaion slider ends here */
+/* Eductaion sliders ends here */
 
 /*image group3 starts*/
 .education_section .third_planet {
